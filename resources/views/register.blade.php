@@ -27,7 +27,11 @@
                     <label>Password</label>
                     <input type="password" name="password" class="form-control" placeholder="Password" required="">
                 </div>
-                <button class="btn btn-primary pull-right" type="submit">Submit</button>
+                <div class="form-group">
+                    <label>Password Confirm</label>
+                    <input type="password" name="password_confirm" class="form-control" placeholder="Password" required="">
+                </div>
+                <button class="btn btn-success pull-right" type="submit">Submit</button>
                 <hr>
             </form>
         </div>

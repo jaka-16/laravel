@@ -33,21 +33,33 @@ class SignupController extends Controller
         $Signup = new Signup;
         $email = $request->email;
         $pass = $request->password;
+        $pass_confirm = $request->password_confirm;
+
         
         $countEmail = $Signup->check_email($email);
 
         if($countEmail > 0){
 
-            $status = array("message"=> "user is already exist");
+            $status = array("message" => "user is already exist");
 
-            return response($status, 422)->header('Content-Type', 'application/json');
+            //return response($status, 422)->header('Content-Type', 'application/json');
+            Session::flash('error', 'email is already exist');
+
+
+
         }else{
+
+            if($pass != $pass_confirm){
+
+                Session::flash('error', 'between password field and password confirm field is not match');
+            }
 
             if(!Authent::isEmailValid($email)){
 
                 $status = ["message"=> "email is not eligible"];
 
-                return response($status, 422)->header('Content-Type', 'application/json');
+                //return response($status, 422)->header('Content-Type', 'application/json');
+                Session::flash('error', 'invalid email!');
 
             }else{
 
@@ -67,7 +79,7 @@ class SignupController extends Controller
                     $status = ["message"=> "password must be contains number, special character, upper-case letter, and lower-case letter"];
                     //return response($status, 422)->header('Content-Type', 'application/json');
                     Session::flash('error', "password must be contains number, special character, upper-case letter, and lower-case letter");
-                    return redirect('register');
+                    //return redirect('register');
 
                 }
 
