@@ -44,6 +44,7 @@ class SignupController extends Controller
 
             //return response($status, 422)->header('Content-Type', 'application/json');
             Session::flash('error', 'email is already exist');
+            return redirect('register');
 
 
 
@@ -52,6 +53,7 @@ class SignupController extends Controller
             if($pass != $pass_confirm){
 
                 Session::flash('error', 'between password field and password confirm field is not match');
+                return redirect('register');
             }
 
             if(!Authent::isEmailValid($email)){
@@ -60,6 +62,7 @@ class SignupController extends Controller
 
                 //return response($status, 422)->header('Content-Type', 'application/json');
                 Session::flash('error', 'invalid email!');
+                return redirect('register');
 
             }else{
 
@@ -80,7 +83,7 @@ class SignupController extends Controller
                     //return response($status, 422)->header('Content-Type', 'application/json');
                     Session::flash('error', "password must be contains number, special character, upper-case letter, and lower-case letter");
                     //return redirect('register');
-
+                    return redirect('register');
                 }
 
             }
