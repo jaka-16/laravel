@@ -34,6 +34,7 @@ class SignupController extends Controller
         $email = $request->email;
         $pass = $request->password;
         $pass_confirm = $request->password_confirm;
+        $role = $request->role;
 
         
         $countEmail = $Signup->check_email($email);
@@ -71,6 +72,7 @@ class SignupController extends Controller
                     $hashpassword = Hash::make($pass);
                     $Signup->email = $email;
                     $Signup->password = $hashpassword;
+                    $Signup->role = $role;
                     $Signup->save();
                     $status = ["message"=> "new user has been registered"];
                     //return response($status, 200)->header('Content-Type', 'application/json');

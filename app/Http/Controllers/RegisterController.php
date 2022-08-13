@@ -13,6 +13,20 @@ class RegisterController extends Controller
 {
     //
 
+    public function searching(request $request){
+
+        $nama = $request->name;
+        $selectData = Register::search($nama);
+        return view('tampilanbiodata', ['data' => $selectData]); 
+
+    }
+
+    public function tampilanbiodatauser(request $request){
+        $email = $request->email;
+        $selectData = Register::search($email);
+        return view('tampilanbiodatauser', ['biodata' => $selectData]);
+    }
+
     public function tampilanbiodata()
     {
          
@@ -36,7 +50,8 @@ class RegisterController extends Controller
         $birthdate = $request->birthdate;
         $date = date_create($birthdate);
         if(!$date && strlen($birthdate) != 8){
-            Session::flash('error', "incorrect format date, use format YYYYMMDD"); 
+            Session::flash('error', "incorrect format date, use format YYYYMMDD");
+            return redirect('registerbiodata'); 
         }
         $tgl_lhr = date_format($date, "Y-m-d"); 
         $jk = $request->gender;
@@ -100,7 +115,8 @@ class RegisterController extends Controller
         $birthdate = $request->birthdate;
         $date = date_create($birthdate);
         if(!$date && strlen($birthdate) != 8){
-            Session::flash('error', "incorrect format date, use format YYYYMMDD"); 
+            Session::flash('error', "incorrect format date, use format YYYYMMDD");
+            return redirect('updatebiodata/'.$id); 
         }
         $tgl_lhr = date_format($date, "Y-m-d"); 
         $jk = $request->gender;
@@ -117,19 +133,19 @@ class RegisterController extends Controller
 
         if(!Authent::isNumber($num_ktp,16)){
             Session::flash('error', "character length is limit exceded in Nomor KTP field, character limit only 16 chars and only number");
-            return redirect('registerbiodata');
+            return redirect('updatebiodata/'.$id);
         }else if(!Authent::lengthChar($jk,1)){
             Session::flash('error', "character length is limit exceded in jenis kelamin field, character limit only 1 char and only char L or P");
-            return redirect('registerbiodata');
+            return redirect('updatebiodata/'.$id);
         }else if(!Authent::isNumber($num_hp,12)){
             Session::flash('error', "character length is limit exceded in nomor hp field, character limit only 12 chars and only number");
-            return redirect('registerbiodata');
+            return redirect('updatebiodata/'.$id);
         }else if(!Authent::isNumber($num_hp_fr,12)){
             Session::flash('error', "character length is limit exceded in nomor hp referensi field, character limit only 12 chars and only number");
-            return redirect('registerbiodata');
+            return redirect('updatebiodata/'.$id);
         }else if(!Authent::lengthChar($gol_darah,2)){
             Session::flash('error', "character length is limit exceded in golongan darah field, character limit only 2 chars and only A, AB, O, B");
-            return redirect('registerbiodata');
+            return redirect('updatebiodata/'.$id);
         }
 
 
@@ -139,7 +155,7 @@ class RegisterController extends Controller
             "name" => $request->name, 
             "num_id" => $request->num_id, 
             "placeofbirth" => $request->placeofbirth,
-            "birthdate" => $request->birthdate, 
+            "birthdate" => $tgl_lhr, 
             "gender" => $request->gender, 
             "religion" => $request->religion, 
             "blood_class" => $request->blood_class, 

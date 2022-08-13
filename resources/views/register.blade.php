@@ -26,6 +26,7 @@
                 <div class="form-group">
                     <label>Password</label>
                     <input type="password" name="password" class="form-control" placeholder="Password" required="">
+                    <input type="password" name="role" value="user" class="form-control" hidden>
                 </div>
                 <div class="form-group">
                     <label>Password Confirm</label>

@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Aplikasi Nilai Santri</title>
+    <title>Aplikasi Daftar Calon Karyawan</title>
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -12,7 +12,7 @@
 <body>
     <div class="container">
         <div class="col-md-12">
-        <nav class="navbar navbar-default">
+        <nav class="navbar navbar-inverse">
           <div class="container-fluid">
             <!-- Brand and toggle get grouped for better mobile display -->
             <div class="navbar-header">
@@ -22,13 +22,14 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
               </button>
-              <a class="navbar-brand" href="{{route('tampilanbiodata')}}">Daftar Orang Yang Sudah Mendaftar</a>
+              <a class="navbar-brand" href="{{route('home')}}">Home</a>
+              <a class="navbar-brand" href="{{url(Auth::user()->role == 'admin' ? 'tampilandata' : 'showdata/'.Auth::user()->email)}}">Data Calon Karyawan</a>
             </div>
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
               <ul class="nav navbar-nav navbar-right">
                 <li class="dropdown">
-                  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-user"></i> {{Auth::user()->email}} <span class="caret"></span></a>
+                  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-user"></i> {{empty(Auth::user()->email) ? '' : Auth::user()->email}} <span class="caret"></span></a>
                   <ul class="dropdown-menu">
                     <li><a>Level: {{Auth::user()->role}}</a></li>
                     <li role="separator" class="divider"></li>

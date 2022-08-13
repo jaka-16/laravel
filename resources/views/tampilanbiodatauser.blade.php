@@ -11,7 +11,7 @@
 @extends('master')
 
 @section('konten')
-<h3>Data Seluruh Calon Karyawan</h3>
+<h3>Data Calon Karyawan</h3>
 <nav class="navbar navbar-light bg-light justify-content-between">
   <a class="btn btn-success" href="{{url('registerbiodata')}}"><i class="fa fa-plus"></i> Input Biodata </a>
   <form class="form-inline pull-right" action="{{ route('searching') }}" method="get" >
@@ -38,31 +38,6 @@
     <th>Nomor Telpon Org Terdekat</th>
     <th>Aksi</th>
   </tr>
-  @if(!empty($data))
-    @foreach($data as $s)
-  <tr>
-    <td>{{$i = 1}}</td>
-    <td>{{$s->position_int}}</td>
-    <td>{{$s->name}}</td>
-    <td>{{$s->num_id}}</td>
-    <td>{{$s->placeofbirth}}</td>
-    <td>{{$s->birthdate}}</td>
-    <td>{{$s->gender}}</td>
-    <td>{{$s->religion}}</td>
-    <td>{{$s->blood_class}}</td>
-    <td>{{$s->status}}</td>
-    <td>{{$s->address_id}}</td>
-    <td>{{$s->address}}</td>
-    <td>{{$s->email}}</td>
-    <td>{{$s->num_hp}}</td>
-    <td>{{$s->num_hp_fr}}</td>
-    <td>
-      <a href="updatebiodata/{{$s->id}}" class="btn btn-warning btn-sm"><i class="fa fa-pencil"></i></a>
-      <a href="deleted/{{$s->id}}" onclick="return confirm('Apakah Anda Yakin Menghapus Data?');" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i></a>
-    </td>
-  </tr>
-    @endforeach
-  @else
     @foreach($biodata as $s)
   <tr>
     <td>{{$i = 1}}</td>
@@ -86,37 +61,7 @@
     </td>
   </tr>
     @endforeach
-  @endif
 </table>
 @endsection
 </body>
-<script>
-const searchFocus = document.getElementById('search');
-const keys = [
-  { keyCode: 'AltLeft', isTriggered: false },
-  { keyCode: 'ControlLeft', isTriggered: false },
-];
-
-window.addEventListener('keydown', (e) => {
-  keys.forEach((obj) => {
-    if (obj.keyCode === e.code) {
-      obj.isTriggered = true;
-    }
-  });
-
-  const shortcutTriggered = keys.filter((obj) => obj.isTriggered).length === keys.length;
-
-  if (shortcutTriggered) {
-    searchFocus.focus();
-  }
-});
-
-window.addEventListener('keyup', (e) => {
-  keys.forEach((obj) => {
-    if (obj.keyCode === e.code) {
-      obj.isTriggered = false;
-    }
-  });
-});
-</script>
 </html>

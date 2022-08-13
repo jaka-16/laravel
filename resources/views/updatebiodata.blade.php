@@ -8,6 +8,9 @@
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
+@extends('master')
+
+@section('konten')
     <div class="container"><br>
         <div class="col-md-8 col-md-offset-2">
             <h2 class="text-center"><b>Register Form</b></h3>
@@ -45,8 +48,11 @@
                     <input type="text" name="birthdate" value="{{$s->birthdate}}" class="form-control" placeholder="birthdate format YYYY/MM/DD" required="">
                 </div>
                 <div class="form-group">
-                    <label>Jenis Kelamin</label>
-                    <input type="text" name="gender" value="{{$s->gender}}" class="form-control" placeholder="gender" required="">
+                        <label>Jenis Kelamin</label> <br>
+                    <div class="form-check form-check-inline">
+                            <input type="radio" name="gender" value="L" {{$s->gender == 'L' ? 'checked' : ''}} id="search">Laki-Laki
+                            <input type="radio" name="gender" value="P" {{$s->gender == 'P' ? 'checked' : ''}} id="search">Perempuan
+                        </div>
                 </div>
                 <div class="form-group">
                     <label>Agama</label>
@@ -86,5 +92,19 @@
             </form>
         </div>
     </div>
+    @endsection
+    <script>
+        const radioButtons = document.querySelectorAll('input[name="gender"]');
+        for(const radioButton of radioButtons){
+            radioButton.addEventListener('select', showSelected);
+        }        
+        
+        function showSelected(e) {
+            console.log(e);
+            if (this.checked) {
+                document.querySelector('#search') = this.value;
+            }
+        }
+    </script>
 </body>
 </html>

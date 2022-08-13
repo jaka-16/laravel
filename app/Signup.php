@@ -17,7 +17,7 @@ class Signup extends Model implements AuthenticatableContract
     protected $table = 'signups';
     
     protected $fillable = [
-        'email', 'password'
+        'email', 'password', 'role'
     ];
     
 

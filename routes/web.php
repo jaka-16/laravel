@@ -38,9 +38,9 @@ Route::get('actionlogout', [SignupController::class, 'actionlogout'])->name('act
 Route::get('updatebiodata/{id}', [RegisterController::class, 'filledField'])->name('filledField')->middleware('auth');
 Route::get('updated/{id}', [RegisterController::class, 'update'])->name('update')->middleware('auth');
 Route::get('deleted/{id}', [RegisterController::class, 'delete'])->name('delete')->middleware('auth');
+Route::get('showdata/{email}', [RegisterController::class, 'tampilanbiodatauser'])->name('tampilanbiodatauser')->middleware('auth');
 
-
-
+Route::get('searching', [RegisterController::class, 'searching'])->name('searching')->middleware('auth');
 
 Route::post('createbiodata', [RegisterController::class, 'register_biodata'])->name('registerbiodata')->middleware('auth');
 Route::get('tampilandata', [RegisterController::class, 'tampilanbiodata'])->name('tampilanbiodata')->middleware('auth');

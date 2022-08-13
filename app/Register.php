@@ -51,4 +51,10 @@ class Register extends Model
         $deleted = DB::table('registers')->where('id', $id)->delete();
         return $deleted;
     }
+
+    public static function search($nama){
+        $searching = DB::table('registers')->where('name', 'like', '%'.$nama.'%')->get();
+        return $searching;
+
+    }
 }
