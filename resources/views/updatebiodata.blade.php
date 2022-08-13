@@ -45,7 +45,7 @@
                 </div>
                 <div class="form-group">
                 <label>Tanggal Lahir</label>
-                    <input type="text" class="form-control datepicker" name="birthdate" value="{{$s->birthdate}}" placeholder="Date of everything" autocomplete="off">
+                    <input type="text" class="form-control datepicker" name="birthdate" value="{{$s->birthdate}}" placeholder="Date of birth" autocomplete="off">
                 </div>
                 <div class="form-group">
                         <label>Jenis Kelamin</label> <br>
@@ -110,7 +110,6 @@
             </form>
         </div>
     </div>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.min.css"/>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>
@@ -144,11 +143,6 @@
         $('#statusid').on('click',function() {
             document.querySelector('#statusid') = $(this).val();
         });
-
-        const radioButtons = document.querySelectorAll('input[name="size"]');
-        for(const radioButton of radioButtons){
-            radioButton.addEventListener('change', showSelected);
-        }
     </script>
     @endsection
 </body>

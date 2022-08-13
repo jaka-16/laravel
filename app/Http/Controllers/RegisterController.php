@@ -58,9 +58,7 @@ class RegisterController extends Controller
         $email = $request->email;
         $num_hp = $request->num_hp;
         $num_hp_fr = $request->num_hp_fr;
-
-
-
+        $email2 = Auth::user()->role;
 
         if(!Authent::isNumber($num_ktp,16)){
             Session::flash('error', "character length is limit exceded in Nomor KTP field, character limit only 16 chars and only number");
@@ -99,9 +97,8 @@ class RegisterController extends Controller
 
         ]);
 
-        $selectData = Register::searchEmail($email);
-        echo $selectData;
-        if($selectData[0]->role == "admin"){
+        $selectData = Register::searchEmail($email2);
+        if($email2 == "admin"){
 
             return redirect('tampilandata');
         }else{
@@ -128,7 +125,7 @@ class RegisterController extends Controller
         $email = $request->email;
         $num_hp = $request->num_hp;
         $num_hp_fr = $request->num_hp_fr;
-        
+        $email2 = Auth::user()->role;
        
         if(!Authent::isNumber($num_ktp,16)){
             Session::flash('error', "character length is limit exceded in Nomor KTP field, character limit only 16 chars and only number");
@@ -166,15 +163,12 @@ class RegisterController extends Controller
             "num_hp_fr" => $request->num_hp_fr
 
         ];
-        
+
         Register::updateData($datas, $id);
-        $selectData = Register::searchEmail($email);
-
-        if($selectData[0]->role == "admin"){
-
+        $selectData = Register::searchEmail($email2);        
+        if($email2 == "admin"){
             return redirect('tampilandata');
         }else{
-
             return redirect('showdata/'.$email);
         }     
 
@@ -184,11 +178,11 @@ class RegisterController extends Controller
         $id = $request->id;
         Register::deleteData($id);
         $selectData = Register::searchEmail($email);
-        if($selectData[0]->role == "admin"){
-
+        $email2 = Auth::user()->role;
+        
+        if($email2 == "admin"){
             return redirect('tampilandata');
         }else{
-
             return redirect('home');
         }     
     }
