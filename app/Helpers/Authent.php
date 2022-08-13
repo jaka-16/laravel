@@ -50,7 +50,7 @@ class Authent{
     public static function isNumber($num, $limit){
         $isNum = preg_match("'^[0-9]*$'", $num);
         $length = Str::length($num);
-        if(!$isNum || $length > $limit){
+        if(!$isNum || $length != $limit){
 
             return false;
 

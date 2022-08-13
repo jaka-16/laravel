@@ -56,7 +56,7 @@
     <td>{{$s->num_hp}}</td>
     <td>{{$s->num_hp_fr}}</td>
     <td>
-      <a href="updatebiodata/{{$s->id}}" class="btn btn-warning btn-sm"><i class="fa fa-pencil"></i></a>
+      <a href="{{ url('updatebiodata', ['id' => $s->id]) }}" class="btn btn-warning btn-sm"><i class="fa fa-pencil"></i></a>
       <a href="deleted/{{$s->id}}" onclick="return confirm('Apakah Anda Yakin Menghapus Data?');" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i></a>
     </td>
   </tr>

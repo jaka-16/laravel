@@ -42,7 +42,7 @@ Route::get('showdata/{email}', [RegisterController::class, 'tampilanbiodatauser'
 
 Route::get('searching', [RegisterController::class, 'searching'])->name('searching')->middleware('auth');
 
-Route::post('createbiodata', [RegisterController::class, 'register_biodata'])->name('registerbiodata')->middleware('auth');
+Route::get('createbiodata', [RegisterController::class, 'register_biodata'])->name('registerbiodata')->middleware('auth');
 Route::get('tampilandata', [RegisterController::class, 'tampilanbiodata'])->name('tampilanbiodata')->middleware('auth');
 Route::get('santri/tambah', [SantriController::class, 'tambahsantri'])->name('tambahsantri')->middleware('auth');
 Route::post('santri/simpan', [SantriController::class, 'simpansantri'])->name('simpansantri')->middleware('auth');

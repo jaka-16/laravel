@@ -44,8 +44,8 @@
                     <input type="text" name="placeofbirth" value="{{$s->placeofbirth}}" class="form-control" placeholder="placeofbirth" required="">
                 </div>
                 <div class="form-group">
-                    <label>Tanggal Lahir</label>
-                    <input type="text" name="birthdate" value="{{$s->birthdate}}" class="form-control" placeholder="birthdate format YYYY/MM/DD" required="">
+                <label>Tanggal Lahir</label>
+                    <input type="text" class="form-control datepicker" name="birthdate" value="{{$s->birthdate}}" placeholder="Date of everything" autocomplete="off">
                 </div>
                 <div class="form-group">
                         <label>Jenis Kelamin</label> <br>
@@ -55,16 +55,34 @@
                         </div>
                 </div>
                 <div class="form-group">
-                    <label>Agama</label>
-                    <input type="text" name="religion" value="{{$s->religion}}" class="form-control" placeholder="religion" required="">
+                    <label for="empid" >Agama</label>
+                    <select class="form-control" id="empid" name="religion">
+                        <option value= "" >Select Religion</option>
+                        <option value="Islam" {{$s->religion == 'Islam' ? 'selected' : ''}} >Islam</option>
+                        <option value="Kristen" {{$s->religion == 'Kristen' ? 'selected' : ''}} >Kristen</option>
+                        <option value="Hindu" {{$s->religion == 'Hindu' ? 'selected' : ''}} >Hindu</option>
+                        <option value="Budha" {{$s->religion == 'Budha' ? 'selected' : ''}} >Budha</option>
+                    </select>
                 </div>
                 <div class="form-group">
-                    <label>Golongan Darah</label>
-                    <input type="text" name="blood_class" value="{{$s->blood_class}}" class="form-control" placeholder="blood class" required="">
+                <label for="bloodid" >Golongan Darah</label>
+                    <select class="form-control" id="bloodid" name="blood_class">
+                        <option value= "">Select Blood Class</option>
+                        <option value="A" {{$s->blood_class == 'A' ? 'selected' : ''}} >A</option>
+                        <option value="B" {{$s->blood_class == 'B' ? 'selected' : ''}} >B</option>
+                        <option value="O" {{$s->blood_class == 'O' ? 'selected' : ''}} >O</option>
+                        <option value="AB" {{$s->blood_class == 'AB' ? 'selected' : ''}} >AB</option>
+                    </select>
                 </div>
                 <div class="form-group">
-                    <label>Status</label>
-                    <input type="text" name="status" value="{{$s->status}}" class="form-control" placeholder="status" required="">
+                <label for="statusid" >Status</label>
+                    <select class="form-control" id="statusid" name="status">
+                        <option value= "">Select Status</option>
+                        <option value="Menikah" {{$s->status == 'Menikah' ? 'selected' : ''}} >Menikah</option>
+                        <option value="Janda" {{$s->status == 'Janda' ? 'selected' : ''}} >Janda</option>
+                        <option value="Duda" {{$s->status == 'Duda' ? 'selected' : ''}} >Duda</option>
+                        <option value="Single" {{$s->status == 'Single' ? 'selected' : ''}} >Single</option>
+                    </select>
                 </div>
                 <div class="form-group">
                     <label>Alamat KTP</label>
@@ -92,8 +110,19 @@
             </form>
         </div>
     </div>
-    @endsection
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.min.css"/>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>
     <script>
+        $(function(){
+    $(".datepicker").datepicker({
+      format: 'yyyy-mm-dd',
+      autoclose: true,
+      todayHighlight: true,
+      lang: "id"
+        });
+        });
         const radioButtons = document.querySelectorAll('input[name="gender"]');
         for(const radioButton of radioButtons){
             radioButton.addEventListener('select', showSelected);
@@ -105,6 +134,22 @@
                 document.querySelector('#search') = this.value;
             }
         }
+
+        $('#empid').on('click',function() {
+            document.querySelector('#empid') = $(this).val();
+        });
+        $('#bloodid').on('click',function() {
+            document.querySelector('#bloodid') = $(this).val();
+        });
+        $('#statusid').on('click',function() {
+            document.querySelector('#statusid') = $(this).val();
+        });
+
+        const radioButtons = document.querySelectorAll('input[name="size"]');
+        for(const radioButton of radioButtons){
+            radioButton.addEventListener('change', showSelected);
+        }
     </script>
+    @endsection
 </body>
 </html>

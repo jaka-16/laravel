@@ -57,15 +57,16 @@
     <td>{{$s->num_hp}}</td>
     <td>{{$s->num_hp_fr}}</td>
     <td>
-      <a href="updatebiodata/{{$s->id}}" class="btn btn-warning btn-sm"><i class="fa fa-pencil"></i></a>
+      <a href="{{ url('updatebiodata', ['id', $s->id]) }}" class="btn btn-warning btn-sm"><i class="fa fa-pencil"></i></a>
       <a href="deleted/{{$s->id}}" onclick="return confirm('Apakah Anda Yakin Menghapus Data?');" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i></a>
     </td>
   </tr>
     @endforeach
   @else
+  {{$i = 1}}
     @foreach($biodata as $s)
   <tr>
-    <td>{{$i = 1}}</td>
+    <td>{{$i}}</td>
     <td>{{$s->position_int}}</td>
     <td>{{$s->name}}</td>
     <td>{{$s->num_id}}</td>
@@ -81,10 +82,11 @@
     <td>{{$s->num_hp}}</td>
     <td>{{$s->num_hp_fr}}</td>
     <td>
-      <a href="updatebiodata/{{$s->id}}" class="btn btn-warning btn-sm"><i class="fa fa-pencil"></i></a>
+      <a href="{{ url('updatebiodata', ['id' => $s->id]) }}" class="btn btn-warning btn-sm"><i class="fa fa-pencil"></i></a>
       <a href="deleted/{{$s->id}}" onclick="return confirm('Apakah Anda Yakin Menghapus Data?');" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i></a>
     </td>
   </tr>
+  {{$i = $i + 1}}
     @endforeach
   @endif
 </table>

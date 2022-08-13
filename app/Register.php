@@ -57,4 +57,10 @@ class Register extends Model
         return $searching;
 
     }
+
+    public static function searchEmail($email){
+        $searching = DB::table('registers')->leftJoin('signups', 'registers.email', '=', 'signups.email')->select('registers.*', 'signups.email', 'signups.role')->where('registers.email', '=', $email)->get();
+        return $searching;
+
+    }
 }
