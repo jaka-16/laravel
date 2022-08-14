@@ -60,7 +60,6 @@ class SignupController extends Controller
             if(!Authent::isEmailValid($email)){
 
                 $status = ["message"=> "email is not eligible"];
-
                 //return response($status, 422)->header('Content-Type', 'application/json');
                 Session::flash('error', 'invalid email!');
                 return redirect('register');
@@ -72,11 +71,10 @@ class SignupController extends Controller
                     $hashpassword = Hash::make($pass);
                     $Signup->email = $email;
                     $Signup->password = $hashpassword;
-                    $Signup->role = $role;
+                    $Signup->role = 'user';
                     $Signup->save();
                     $status = ["message"=> "new user has been registered"];
                     //return response($status, 200)->header('Content-Type', 'application/json');
-
                     return redirect('/');
                     
                 }else{

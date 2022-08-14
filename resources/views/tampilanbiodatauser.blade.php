@@ -13,7 +13,7 @@
 @section('konten')
 <h3>Data Calon Karyawan</h3>
 <nav class="navbar navbar-light bg-light justify-content-between">
-  <a class="btn btn-success" id="myLink" href="{{url('registerbiodata')}}"><i class="fa fa-plus"></i> Input Biodata </a>
+  <a class="btn btn-success {{count($biodata) > 0 ? 'disabled' : ''}}" id="myLink" href="{{url('registerbiodata')}}"><i class="fa fa-plus"></i> Input Biodata </a>
   <form class="form-inline pull-right" action="{{ route('searching') }}" method="get" >
     <input id="search" type="search" id="form1" name="name" class="form-control">
     <button type="submit" class="btn btn-outline-success my-2 my-sm-0"><i class="fas fa-search"></i> Cari</button>
@@ -63,8 +63,14 @@
     @endforeach
 </table>
 <script>
-$('#myLink').addClass('disabled');
-$('#myLink').attr('Input Biodata', 'Disabled');
+const ipnElement = document.getElementById('myLink');
+const datas = 
+if(datas.count() > 0){
+  
+  $("#myLink").text('Input Biodata Disabled ');
+
+}
+
 </script>
 @endsection
 </body>

@@ -25,17 +25,38 @@
                 </div>
                 <div class="form-group">
                     <label>Password</label>
-                    <input type="password" name="password" class="form-control" placeholder="Password" required="">
-                    <input type="password" name="role" value="user" class="form-control" hidden>
+                    <input type="password" name="password" class="form-control" placeholder="Password" required="" id="togglePass">
                 </div>
                 <div class="form-group">
                     <label>Password Confirm</label>
-                    <input type="password" name="password_confirm" class="form-control" placeholder="Password" required="">
+                    <input type="password" name="password_confirm" class="form-control" placeholder="Password" required="" id="togglePass2">
+                </div>
+                    <!-- An element to toggle between password visibility -->
+                <div class="form-group">
+                    <input type="checkbox" id="btnPassword">Show Password 
                 </div>
                 <button class="btn btn-success pull-right" type="submit">Submit</button>
                 <hr>
             </form>
         </div>
     </div>
+    <script>
+        const ipnElement = document.querySelector('#togglePass')
+        const ipnElement2 = document.querySelector('#togglePass2')
+        const btnElement = document.querySelector('#btnPassword')
+
+        // step 2
+        btnElement.addEventListener('click', function() {
+
+        // step 3
+        const currentType = ipnElement.getAttribute('type')
+        const currentType2 = ipnElement2.getAttribute('type')
+
+        // step 4
+        ipnElement.setAttribute('type',currentType === 'password' ? 'text' : 'password')
+        ipnElement2.setAttribute('type',currentType2 === 'password' ? 'text' : 'password')
+   })
+
+    </script>
 </body>
 </html>
